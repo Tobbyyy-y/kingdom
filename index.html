@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KINGDOM COIN</title>
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'MedievalSharp', cursive;
+    }
+    body {
+      background: linear-gradient(to bottom, #1e2b38, #0d1a26);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: #2f4f4f;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: goldenrod;
+    }
+    .logo {
+      max-width: 120px;
+      margin: 1rem auto;
+    }
+    .timer {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #000000a6;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    section {
+      padding: 3rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .story {
+      font-size: 1.2rem;
+      line-height: 2rem;
+      margin-bottom: 3rem;
+    }
+    .roadmapp {
+      font-size: 3rem;
+      color: #378f7e;
+    }  
+    .roadmap {
+      display: grid;
+      gap: 2rem;
+    }
+    .checkpoint {
+      background: #0f2537;
+      padding: 2rem;
+      border: 2px solid gold;
+      border-radius: 15px;
+    }
+    .checkpoint h3 {
+      color: gold;
+      margin-bottom: 1rem;
+    }
+    .tokenomics {
+      background: #3a3a3a;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 3rem;
+      border: 2px dashed gold;
+    }
+    #tokenChart {
+      max-width: 200px;
+      max-height: 200px;
+      margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #1a1a1a;
+      color: #aaa;
+    }
+    a {
+      color: #00d4ff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="timer" id="kingdom-timer">Loading timer...</div>
+  <header>
+    <h1>The Kingdom of the Frog King</h1>
+    <img src="logo.png" alt="KINGDOM COIN Logo" class="logo" />
+  </header>
+
+  <section class="story">
+    <p>
+      In a forgotten swamp, deep within the mists of the Solana realm, rose a frog unlike any other.
+      Not just wise, but destined — he was crowned by the Moon Lily itself.
+    </p>
+    <p>
+      Thus, began the rise of <strong>KINGDOM COIN</strong>, a realm of golden lily pads, enchanted coins,
+      and digital riches. The Frog King rules not with a scepter, but with the power of the people —
+      the holders of KINGDOM COIN.
+    </p>
+  </section>
+  
+  <section class="roadmapp"
+    <h1>Roadmap</h1>
+  </section>
+  <section class="roadmap">
+    <div class="checkpoint">
+       
+      <h3>🐸 The Awakening Swamp (Q2 2025)</h3>
+      <ul>
+        <li>Token creation on Solana</li>
+        <li>Website launch</li>
+        <li>100,000 holders goal</li>
+      </ul>
+    </div>
+    <div class="checkpoint">
+      <h3>🛡️ The Lily War Camp (Q3 2025)</h3>
+      <ul>
+        <li>DEX listing</li>
+        <li>CMC & CG listing</li>
+        <li>Game teaser trailer</li>
+      </ul>
+    </div>
+    <div class="checkpoint">
+      <h3>🏰 Castle Croakstone (Q4 2025)</h3>
+      <ul>
+        <li>Play-to-earn game beta</li>
+        <li>NFT collection launch</li>
+        <li>1,000,000 holders</li>
+      </ul>
+    </div>
+    <div class="checkpoint">
+      <h3>🏰 The Treasury of Toads (Q1 2026)</h3>
+      <ul>
+        <li>DAO Governance</li>
+        <li>Merch & Partnerships</li>
+        <li>Global frogdom expansion</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="tokenomics">
+    <h2>💰 Tokenomics</h2>
+<br>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start;">
+      <div style="flex: 1; min-width: 250px;">
+        <p><strong>Total Supply:</strong> 1,000,000,000 KINGDOM COIN</p>
+        <br>
+        <p><strong>Tax:</strong> 0% (Fair launch)</p>
+        <br>
+        <p><strong>Blockchain:</strong> Solana</p>
+        <br>
+        <p><strong>Contract Address:</strong>
+          <span class="contract-copy" onclick="copyToClipboard('DPLX1A2E88B7zPKJ6HtprPRbdYdbXPryFeMgRohuvbnC')">
+            DPLX1A2E88B7zPKJ6HtprPRbdYdbXPryFeMgRohuvbnC
+          </span>
+        </p>
+        
+      </div>
+      <div style="flex: 1; min-width: 200px;">
+        <canvas id="tokenChart" style="max-width: 100%; height: auto;"></canvas>
+      </div>
+    </div>
+  </section>
+  
+
+  <footer>
+    <p>Join the Kingdom:</p>
+    <p>
+      <a href="#">Telegram</a> |
+      <a href="#">X</a> |
+      <a href="#">Discord</a> |
+      <a href="#">Whitepaper</a>
+    </p>
+    <p>&copy; 2025 KINGDOM COIN. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const launchDate = new Date("2025-05-15T00:00:00Z");
+    setInterval(() => {
+      const now = new Date();
+      const diff = launchDate - now;
+      const timerEl = document.getElementById("kingdom-timer");
+
+      if (diff > 0) {
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+        timerEl.innerText = `Launching in: ${d}d ${h}h ${m}m ${s}s`;
+      } else {
+        const sinceLaunch = now - launchDate;
+        const d = Math.floor(sinceLaunch / (1000 * 60 * 60 * 24));
+        const h = Math.floor((sinceLaunch / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((sinceLaunch / (1000 * 60)) % 60);
+        const s = Math.floor((sinceLaunch / 1000) % 60);
+        timerEl.innerText = `Launched: ${d}d ${h}h ${m}m ${s}s ago`;
+      }
+    }, 1000);
+
+    // Tokenomics Chart
+    const ctx = document.getElementById('tokenChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Team', 'Community', 'Locked', 'Burn'],
+        datasets: [{
+          data: [30, 50, 10, 10],
+          backgroundColor: ['#FFD700', '#1E90FF', '#8A2BE2', '#DC143C'],
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { labels: { color: 'white' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
